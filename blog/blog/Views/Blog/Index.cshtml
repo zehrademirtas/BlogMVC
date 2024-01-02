@@ -1,0 +1,67 @@
+﻿@using PagedList
+@using PagedList.Mvc;
+@model IPagedList<blog.Models.Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("~/Views/Partial/_SliderPartial.cshtml")
+
+
+
+
+
+
+@foreach (var item in Model)
+{
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container">
+            <div class="item mb-5">
+                <div class="media">
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" width="150" src="@item.Foto" alt="image">
+                    <div class="media-body">
+                        <h3 class="title mb-1"><a href="/Blog/BlogDetay/@item.BlogID">@item.BlogBaslik</a></h3>
+
+                        <div class="meta mb-1"><span class="date">@item.BlogTarih tarihinde yayınlanmıştır</span><span class="time">@item.BlogOkunmaSuresi dk okunma süresi</span><span class="comment"><a href="#">@item.BlogOkunmaSayisi Okunma</a></span></div>
+                        @if (item.BlogIcerik.Length > 400)
+                        {
+                            <div class="intro">
+                                @Html.Raw(item.BlogIcerik.Substring(0, 300))...
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="intro">
+                                @Html.Raw(item.BlogIcerik)
+                            </div>
+
+                        }
+
+                        <a class="more-link" href="/Blog/BlogDetay/@item.BlogID">Devamını Oku &rarr;</a>
+                    </div><!--//media-body-->
+                </div><!--//media-->
+            </div>
+        </div>
+    </section>
+
+}
+
+
+
+
+
+<link href="~/Content/Style.css" rel="stylesheet" />
+<div class="container">
+    <div class="col-md-8">
+        <div class="pagedList pagination-lg">
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }), PagedListRenderOptions.Classic)
+
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBBlogWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Blog">
+    <Key>
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogBaslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BlogIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Foto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="BlogOkunmaSayisi" Type="Int32" />
+    <Property Name="BlogOkunmaSuresi" Type="Int32" />
+    <Property Name="BlogTarih" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Hakkinda">
+    <Key>
+      <PropertyRef Name="HakkindaID" />
+    </Key>
+    <Property Name="HakkindaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HakkindaBaslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="HakkindaIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="UyeID" />
+    </Key>
+    <Property Name="UyeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UyeAdSoyad" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="UyeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DBBlogWebsiteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Blogs" EntityType="Self.Blog" />
+    <EntitySet Name="Hakkindas" EntityType="Self.Hakkinda" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Uyes" EntityType="Self.Uye" />
+  </EntityContainer>
+</Schema>

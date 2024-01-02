@@ -1,0 +1,30 @@
+﻿@model BlogwebsiteMVC.Models.Blog
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<article class="blog-post px-3 py-5 p-md-5">
+    <div class="container single-col-max-width">
+        <header class="blog-post-header">
+            <h2 class="title mb-2">@Model.BlogBaslik</h2>
+            <div class="meta mb-3"><span class="date">@Model.BlogTarih Tarihinde yayinlanmiştir.</span><span class="time">@Model.BlogOkunmaSuresi  dk Okunma Süresi</span><span class="comment"><a class="text-link" href="#">@Model.BlogOkunmaSayisi Okunma</a></span></div>
+        </header>
+
+        <div class="blog-post-body">
+            @Html.Raw(Model.BlogIcerik)
+        </div>
+    </div>
+</article>
+
+<script src="~/Content/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+
+
+<input type="hidden" id="blogId" data-blogid="@Model.BlogID" />
+<script src="~/Scripts/BlogJavaScript.js"></script>
+
+
